@@ -5,7 +5,8 @@ class Login extends CI_Controller{
         parent:: __construct();
         $this->load->view("guest/index");
     }
-    function login(){
+    function login_form(){
+        $this->load->library("session");
         if(!empty($_POST)){
             $email = $this->input->post("email");
             $password = $this->input->post("password");
@@ -16,14 +17,17 @@ class Login extends CI_Controller{
                 foreach($query as $user){
                     $user_data = array(
                         'userid'=>$user->id,
-                        'names'=>$user->full_names
-
+                        'names'=>$user->full_names,
+                        'role'=>$user->role
                     );
                     $this->session->set_userdata($user_data);
+                    
+                    //redirect to respective role
+                    redirect("$user->role/index");
                 }
             }else{
                 $data['msg'] = 'Incorrect email or password';
-                $this->load->view("guest/login", $data);
+                $this->load->view("guest/index", $data);
             }
         }
     }
