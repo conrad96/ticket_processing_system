@@ -40,8 +40,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-user-plus"></i>Add new user</li>
-            <li><a href="#"><i class="fa fa-users"></i>Users</a></li>
+            <li><a href="<?php echo base_url(); ?>index.php/super_admin/users"><i class="fa fa-user-plus"></i>Add new user</li>
             <li><a href="#"><i class="fa fa-tags"></i> Permissions</a></li>    
           </ul>
         </li>
