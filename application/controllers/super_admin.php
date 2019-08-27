@@ -1,8 +1,6 @@
 <?php 
 class Super_admin extends CI_Controller{
     function index(){
-        parent::__construct();
-        //$this->load->library('session');
         //$this->session_checker();
         $this->load->view("super_admin/index");
     }

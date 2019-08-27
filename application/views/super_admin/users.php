@@ -289,7 +289,51 @@
       <!-- Small boxes (Stat box) -->
       
       <div class="row" style="padding-bottom: 25px;">
-      <br><button class="btn btn-success pull-right"><i class="fa fa-plus"></i>Add user</button></br>
+      <br><button class="btn btn-success pull-right" data-toggle="modal" data-target="#addUser"><i class="fa fa-plus"></i>Add user</button></br>
+          <!-- modal-->
+          <div class="modal fade" id="addUser">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Add user</h4>
+              </div>
+              <div class="modal-body">
+                <p>
+                    <form id="add-user" class="form-vertical">
+                        <div class="form-group">                           
+                            <input type="text" name="fullnames" class="form-control col-md-4" placeholder="Full names" id="fullnames">
+                        </div><p />
+                        <div class="form-group">                           
+                            <input type="text" name="username" class="form-control col-md-4" placeholder="username" id="fullnames">
+                        </div><p />
+                        <div class="form-group">                           
+                            <input type="email" id="email" name="email" class="form-control col-md-4" placeholder="Email address" id="fullnames">
+                        </div><p />
+                        <div class="form-group">                         
+                            <input type="text" class="form-control col-md-4" name="password" placeholder="Full names" id="pass">
+                        </div><p />
+                        <div class="form-group">                          
+                            <input type="text" class="form-control col-md-4" name="cpassword" placeholder="Confirm password" id="cpass">
+                        </div><p />
+                        <div class="form-group">                   
+                            <input type="text" class="form-control col-md-4" name="password" placeholder="Full names" id="fullnames">
+                        </div><p />
+                    </form>
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" id="add-user-save" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+
+          <!-- end modal -->
           <?php 
           if(!empty($users)){
             foreach($users as $user){

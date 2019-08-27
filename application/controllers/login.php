@@ -2,11 +2,11 @@
 class Login extends CI_Controller{
     
     function index(){
-        parent:: __construct();
+        
         $this->load->view("guest/index");
     }
     function login_form(){
-        $this->load->library("session");
+        
         if(!empty($_POST)){
             $email = $this->input->post("email");
             $password = $this->input->post("password");
@@ -21,7 +21,7 @@ class Login extends CI_Controller{
                         'role'=>$user->role
                     );
                     $this->session->set_userdata($user_data);
-                    
+
                     //redirect to respective role
                     redirect("$user->role/index");
                 }
