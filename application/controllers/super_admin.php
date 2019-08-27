@@ -12,7 +12,7 @@ class Super_admin extends CI_Controller{
     function add_user(){
         $msg = null;
         if(!empty($_POST)){
-            exit(print_r($_POST));
+            
             $fullnames = $this->input->post("fullnames");
             $username = $this->input->post("username");
             $email =$this->input->post("email");
@@ -28,15 +28,24 @@ class Super_admin extends CI_Controller{
                 if($password != $cpassword){
                     $msg = '<span class="alert alert-warning">Passwords dont match</span>';
                 }else{
-                    //add user 
-
+                   //check if anny permissions were selected
+                   $bool = false; 
+                   foreach($_POST as $key=>$value){
+                        if($value == 'On'){
+                            $bool = true;
+                        }
+                    }
+                    $msg = $bool? '' : '<span class="alert alert-warning">Please choose permission</span>';
+                    if($msg){
+                        //add user
+                    }
                 }
 
             }else{
                 $msg = '<span class="alert alert-danger">*Please fill in all fields</span>';
             }
         }
-        //print_r($msg);
+        print_r($msg);
     }
     
     function session_checker(){
