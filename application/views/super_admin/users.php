@@ -333,7 +333,7 @@
                                     print '
                                     <div class="checkbox">
                                       <label>
-                                        <input type="checkbox" name="'.strtolower(str_replace(' ', '_', $permission->permission)).'" >'.$permission->permission.'
+                                        <input type="checkbox" name="'.$permission->id.'_'.strtolower(str_replace(' ', '_', $permission->permission)).'" >'.$permission->permission.'
                                       </label>
                                     </div>
                                   ';
