@@ -9,6 +9,35 @@ class Super_admin extends CI_Controller{
         $data['permissions'] = $this->db->get("permissions")->result();
         $this->load->view("super_admin/users", $data);
     }
+    function add_user(){
+        $msg = null;
+        if(!empty($_POST)){
+            exit(print_r($_POST));
+            $fullnames = $this->input->post("fullnames");
+            $username = $this->input->post("username");
+            $email =$this->input->post("email");
+            $password =$this->input->post("password");
+            $cpassword =$this->input->post("cpassword");
+            //validate
+            if(!empty($fullnames)
+            && !empty($username)
+            && !empty($email)
+            && !empty($password)
+            && !empty($cpassword)
+            ){
+                if($password != $cpassword){
+                    $msg = '<span class="alert alert-warning">Passwords dont match</span>';
+                }else{
+                    //add user 
+
+                }
+
+            }else{
+                $msg = '<span class="alert alert-danger">*Please fill in all fields</span>';
+            }
+        }
+        //print_r($msg);
+    }
     
     function session_checker(){
         if(empty($this->session->userid)) redirect('login/index');
