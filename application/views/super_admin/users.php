@@ -327,27 +327,21 @@
                           <span id="permission-display">
                             <h4>Permissions</h4>
                             <div class="row">
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox">Write ticket
-                                </label>
-                              </div>
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox">Read ticket
-                                </label>
-                              </div>
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox">Edit ticket
-                                </label>
-                              </div>
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox">Close ticket
-                                </label>
-                              </div>
-                            </div>
+                              <?php 
+                                if(!empty($permissions)){
+                                  foreach($permissions as $permission){
+                                    print '
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox">'.$permission->permission.'
+                                      </label>
+                                    </div>
+                                  ';
+                                  }
+                                }else{
+                                  print '<span class="alert alert-danger">No permissions created</span>';
+                                }
+                              ?>
                           </span>                         
                         </div>
                     </form>

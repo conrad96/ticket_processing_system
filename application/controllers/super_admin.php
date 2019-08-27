@@ -6,6 +6,7 @@ class Super_admin extends CI_Controller{
     }
     function users(){
         $data['users'] = $this->_users->users();
+        $data['permissions'] = $this->db->get("permissions")->result();
         $this->load->view("super_admin/users", $data);
     }
     
