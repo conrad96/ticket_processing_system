@@ -385,6 +385,11 @@
                     <li class="list-group-item">
                       <b>Email</b> <a class="pull-right">'.$user->email.'</a>
                     </li>
+                    <li class="list-group-item">
+                      <pre>
+                      '.$user->permissions.'
+                      </pre>
+                    </li>
                   </ul>
     
                   <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
