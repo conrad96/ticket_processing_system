@@ -301,25 +301,30 @@
               </div>
               <div class="modal-body">
                 <p>
-                    <form id="add-user" class="form-vertical">
-                        <div class="form-group">                           
-                            <input type="text" name="fullnames" class="form-control col-md-4" placeholder="Full names" id="fullnames">
-                        </div><p />
-                        <div class="form-group">                           
-                            <input type="text" name="username" class="form-control col-md-4" placeholder="username" id="fullnames">
-                        </div><p />
-                        <div class="form-group">                           
-                            <input type="email" id="email" name="email" class="form-control col-md-4" placeholder="Email address" id="fullnames">
-                        </div><p />
-                        <div class="form-group">                         
-                            <input type="text" class="form-control col-md-4" name="password" placeholder="Full names" id="pass">
-                        </div><p />
-                        <div class="form-group">                          
-                            <input type="text" class="form-control col-md-4" name="cpassword" placeholder="Confirm password" id="cpass">
-                        </div><p />
-                        <div class="form-group">                   
-                            <input type="text" class="form-control col-md-4" name="password" placeholder="Full names" id="fullnames">
-                        </div><p />
+                    <form id="add-user" role="form">
+                        <div class="box-body">
+                          <div class="form-group">  
+                              <label for="fullnames">Full names</label>                         
+                              <input type="text" name="fullnames" class="form-control col-md-4" placeholder="Full names" id="fullnames">
+                          </div>
+                          <div class="form-group">      
+                              <label for="username">Username</label>                      
+                              <input type="text" name="username" class="form-control col-md-4" placeholder="username" id="username">
+                          </div>
+                          <div class="form-group">      
+                              <label for="email">Email</label>                      
+                              <input type="email" id="email" name="email" class="form-control col-md-4" placeholder="Email address" id="fullnames">
+                          </div>
+                          <div class="form-group"> 
+                             <label for="pass">Password</label>                         
+                              <input type="text" class="form-control col-md-4" name="password" placeholder="Full names" id="pass">
+                          </div>
+                          <div class="form-group">   
+                              <label for="cpass">Confirm password</label>                        
+                              <input type="text" class="form-control col-md-4" name="cpassword" placeholder="Confirm password" id="cpass">
+                          </div>
+                          
+                        </div>
                     </form>
                 </p>
               </div>
