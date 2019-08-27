@@ -315,6 +315,18 @@
                               <label for="email">Email</label>                      
                               <input type="email" id="email" name="email" class="form-control col-md-4" placeholder="Email address" id="fullnames">
                           </div>
+                          <div class="form-group">      
+                              <label for="role">Role</label>                      
+                              <select id="role" name="role" class="form-control col-md-4">
+                              <?php 
+                                if(!empty($roles)){
+                                  foreach($roles as $role){
+                                    print '<option>'.$role->role.'</option>';
+                                  }
+                                }
+                              ?>
+                              </select>
+                          </div>
                           <div class="form-group"> 
                              <label for="pass">Password</label>                         
                               <input type="text" class="form-control col-md-4" name="password" placeholder="Full names" id="pass">
@@ -333,7 +345,7 @@
                                     print '
                                     <div class="checkbox">
                                       <label>
-                                        <input type="checkbox" name="'.$permission->id.'_'.strtolower(str_replace(' ', '_', $permission->permission)).'" >'.$permission->permission.'
+                                        <input type="checkbox" name="permissions[]" value="'.$permission->id.'_'.strtolower(str_replace(' ', '_', $permission->permission)).'" >'.$permission->permission.'
                                       </label>
                                     </div>
                                   ';

@@ -9,4 +9,12 @@ class _users extends CI_Model{
             WHERE u.id NOT IN (".$this->session->userid.")
             ")->result();
     }
+    function add($data = array()){
+        $user = $this->db->insert("users", $data);
+        return $this->db->insert_id();
+    }
+    function add_permission_mapping($data = array()){
+        $permission = $this->db->insert("permission_mapping", $data);
+        return $this->db->insert_id();
+    }
 }
