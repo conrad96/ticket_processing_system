@@ -289,7 +289,7 @@
       <!-- Small boxes (Stat box) -->
       
       <div class="row" style="padding-bottom: 25px;">
-      <br><button class="btn btn-success pull-right" data-toggle="modal" data-target="#addUser"><i class="fa fa-plus"></i>Add user</button></br>
+      <br><button class="btn btn-success pull-right" data-toggle="modal" data-target="#addUser" data-backdrop="static"><i class="fa fa-plus"></i>Add user</button></br>
           <!-- modal-->
           <div class="modal fade" id="addUser">
           <div class="modal-dialog">
@@ -323,7 +323,32 @@
                               <label for="cpass">Confirm password</label>                        
                               <input type="text" class="form-control col-md-4" name="cpassword" placeholder="Confirm password" id="cpass">
                           </div>
-                          
+                          <hr />
+                          <span id="permission-display">
+                            <h4>Permissions</h4>
+                            <div class="row">
+                              <div class="checkbox">
+                                <label>
+                                  <input type="checkbox">Write ticket
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <label>
+                                  <input type="checkbox">Read ticket
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <label>
+                                  <input type="checkbox">Edit ticket
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <label>
+                                  <input type="checkbox">Close ticket
+                                </label>
+                              </div>
+                            </div>
+                          </span>                         
                         </div>
                     </form>
                 </p>
