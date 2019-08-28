@@ -330,11 +330,11 @@
                           </div>
                           <div class="form-group"> 
                              <label for="pass">Password</label>                         
-                              <input type="text" class="form-control col-md-4" name="password" placeholder="Full names" id="pass">
+                              <input type="password" class="form-control col-md-4" name="password" placeholder="Password" id="pass">
                           </div>
                           <div class="form-group">   
                               <label for="cpass">Confirm password</label>                        
-                              <input type="text" class="form-control col-md-4" name="cpassword" placeholder="Confirm password" id="cpass">
+                              <input type="password" class="form-control col-md-4" name="cpassword" placeholder="Confirm password" id="cpass">
                           </div>
                           <hr />
                           <span id="permission-display">
