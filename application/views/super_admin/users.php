@@ -290,6 +290,52 @@
       
       <div class="row" style="padding-bottom: 25px;">
       <br><button class="btn btn-success pull-right" data-toggle="modal" data-target="#addUser" data-backdrop="static"><i class="fa fa-plus"></i>Add user</button></br>
+      <?php 
+          if(!empty($users)){
+            foreach($users as $user){
+                print 
+                '
+                <div class="col-md-4">
+                <div class="box box-primary">
+                <div class="box-body box-profile">
+                  <img class="profile-user-img img-responsive img-circle" src="'.base_url().'assets/dist/img/avatar.png" alt="User profile picture">
+    
+                  <h3 class="profile-username text-center">'.$user->full_names.'</h3>
+    
+                  <p class="text-muted text-center">'.$user->role.'</p>
+    
+                  <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item">
+                        <b>Username</b> <a class="pull-right">'.$user->username.'</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Email</b> <a class="pull-right">'.$user->email.'</a>
+                    </li>
+                    <li class="list-group-item"><b>Permissions:</b>
+                      <span class="text-muted text-center">
+                      '.$user->permissions.'
+                      </span>
+                    </li>
+                  </ul>
+    
+                  <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+                </div>
+                <!-- /.box-body -->
+              </div>
+                </div>
+                ';
+            }
+          }else{
+              print '
+              <div class="alert alert-warning alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-warning"></i> Oops!</h4>
+                No user registered
+              </div>
+              ';
+          }
+          ?>
+
           <!-- modal-->
           <div class="modal fade" id="addUser">
           <div class="modal-dialog">
@@ -372,51 +418,7 @@
         </div>
 
           <!-- end modal -->
-          <?php 
-          if(!empty($users)){
-            foreach($users as $user){
-                print 
-                '
-                <div class="col-md-4">
-                <div class="box box-primary">
-                <div class="box-body box-profile">
-                  <img class="profile-user-img img-responsive img-circle" src="'.base_url().'assets/dist/img/avatar.png" alt="User profile picture">
-    
-                  <h3 class="profile-username text-center">'.$user->full_names.'</h3>
-    
-                  <p class="text-muted text-center">'.$user->role.'</p>
-    
-                  <ul class="list-group list-group-unbordered">
-                    <li class="list-group-item">
-                        <b>Username</b> <a class="pull-right">'.$user->username.'</a>
-                    </li>
-                    <li class="list-group-item">
-                      <b>Email</b> <a class="pull-right">'.$user->email.'</a>
-                    </li>
-                    <li class="list-group-item">
-                      <pre>
-                      '.$user->permissions.'
-                      </pre>
-                    </li>
-                  </ul>
-    
-                  <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
-                </div>
-                <!-- /.box-body -->
-              </div>
-                </div>
-                ';
-            }
-          }else{
-              print '
-              <div class="alert alert-warning alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h4><i class="icon fa fa-warning"></i> Oops!</h4>
-                No user registered
-              </div>
-              ';
-          }
-          ?>
+          
       </div>
       <!-- /.row (main row) -->
 

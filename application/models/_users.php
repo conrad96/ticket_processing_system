@@ -2,10 +2,20 @@
 class _users extends CI_Model{
     function users(){
         return $this->db->query(
-            "SELECT u.* 
+            "SELECT u.full_names,
+                    u.username,
+                    u.email,
+                    r.role, 
+                    (SELECT 
+                        GROUP_CONCAT(DISTINCT p1.permission
+                            ORDER BY p1.id ASC
+                            SEPARATOR ',')
+                        FROM permissions p1 
+                            INNER JOIN permissions_mapping pm ON pm.permission_id = p1.id 
+                        WHERE pm.user_id = u.id
+                    ) AS permissions
                 FROM users u 
-            INNER JOIN permissions_mapping pm ON pm.user_id = u.id 
-            INNER JOIN permissions p ON p.id = pm.permission_id
+                LEFT JOIN roles r ON r.id = u.role
             WHERE u.id NOT IN (".$this->session->userid.")
             ")->result();
     }
