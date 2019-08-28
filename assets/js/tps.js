@@ -14,7 +14,10 @@ $(document).ready(function(){
             },
             error: function(xhr, error, status){},
             success:function(data){
-                console.log(data);
+                $("#msg-detail").html(data);
+                if(data === '<span class="alert alert-success">Account created successfully</span>'){
+                    window.location.href = baseUrl + 'index.php/super_admin/users';
+                }               
             }
         });
     });
