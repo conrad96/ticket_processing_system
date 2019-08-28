@@ -321,7 +321,7 @@
                               <?php 
                                 if(!empty($roles)){
                                   foreach($roles as $role){
-                                    print '<option>'.$role->role.'</option>';
+                                    print '<option value="'.$role->id.'">'.$role->role.'</option>';
                                   }
                                 }
                               ?>

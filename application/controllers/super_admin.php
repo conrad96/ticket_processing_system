@@ -35,7 +35,7 @@ class Super_admin extends CI_Controller{
                   if(!empty($_POST['permissions'])){
                       $mapping = array();
                     //add user
-                    $user['fullnames'] = $fullnames;
+                    $user['full_names'] = $fullnames;
                     $user['email'] = $email;
                     $user['username'] = $username;
                     $user['password'] = $password;
@@ -50,11 +50,15 @@ class Super_admin extends CI_Controller{
                             array_push($perm_ids, $str[0]);                      
                         }                        
                         if(!empty($perm_ids)){
+                            $val = -1;
                             foreach($perm_ids as $id){
-                                $mapping['permission_id'] = $id;
-                                $mapping['user_id'] = $result;
-                            }
-                            $val = $add_mapping = $this->_users->add_permission_mapping($mapping);
+                                $this->db->insert("permissions_mapping", 
+                                    array("user_id"=> $result,
+                                        "permission_id"=>$id
+                                    )
+                                );
+                                $val = $this->db->insert_id();
+                            }                          
                             if($val > 0){
                                 $msg = '<span class="alert alert-success">Account created successfully</span>';
                             }
