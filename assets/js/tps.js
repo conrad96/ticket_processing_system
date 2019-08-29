@@ -42,9 +42,9 @@ $(document).ready(function(){
             success:function(data){
                 $("#msg-detail").html(data);
                 console.log(data);
-                // if(data === '<span class="alert alert-success">Account created successfully</span>'){
-                //     window.location.href = baseUrl + 'index.php/super_admin/users';
-                // }               
+                if(data === '<span class="alert alert-success">Ticket added successfully</span>'){
+                    window.location.href = baseUrl + 'index.php/admin/tickets';
+                }               
             }
         });
     });
