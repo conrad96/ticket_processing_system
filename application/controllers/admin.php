@@ -7,6 +7,9 @@ class Admin extends CI_Controller{
         $data['tickets'] = $this->_tickets->get_all_tickets();
         $this->load->view("admin/tickets", $data);
     }
+    function add_ticket(){
+        print_r($_POST);
+    }
     function logout(){
         $this->session->sess_destroy();
         redirect("login/index");
