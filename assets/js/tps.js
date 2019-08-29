@@ -21,4 +21,8 @@ $(document).ready(function(){
             }
         });
     });
+
+    $("#dash-link").click(function(e){
+        window.location.href = $("#base-url").val() + 'index.php/super_admin/index';
+    });
 });
