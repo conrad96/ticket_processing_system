@@ -27,8 +27,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview">
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>            
+          <a href="<?php echo base_url(); ?>index.php/super_admin/index"><i class="fa fa-dashboard"></i> <span>Dashboard</span>            
           </a>
         </li>
         <li class="treeview">
@@ -39,9 +38,9 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <!-- <ul class="treeview-menu">
+           <ul class="treeview-menu">
             <li><a href="<?php echo base_url(); ?>index.php/super_admin/users"><i class="fa fa-user-plus"></i>Add new user</li>
-            <li><a href="#"><i class="fa fa-tags"></i> Permissions</a></li>    
+            <!--<li><a href="#"><i class="fa fa-tags"></i> Permissions</a></li>    
           </ul> -->
         </li>
         <!-- <li class="treeview">
