@@ -23,6 +23,21 @@ class _users extends CI_Model{
         $user = $this->db->insert("users", $data);
         return $this->db->insert_id();
     }
+    function departments(){
+        return $this->db->query("
+        SELECT u.full_names as author,
+            d.dateadded,
+            d.department,
+            d.id as ID,
+            (
+                SELECT 
+                    COUNT(*)
+                    FROM users u1 WHERE u1.department_id = d.id
+            ) as employees 
+            FROM departments d
+                INNER JOIN users u ON u.id = d.author
+        ")->result();
+    }
     function add_permission_mapping($data = array()){
         $permission = $this->db->insert("permission_mapping", $data);
         return $this->db->insert_id();

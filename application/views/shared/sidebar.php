@@ -40,55 +40,33 @@
           </a>
            <ul class="treeview-menu">
             <li><a href="<?php echo base_url(); ?>index.php/super_admin/users"><i class="fa fa-user-plus"></i>Add new user</li>
-            <!--<li><a href="#"><i class="fa fa-tags"></i> Permissions</a></li>    
-          </ul> -->
+          </ul>
         </li>
-        <!-- <li class="treeview">
+        <li class="treeview">
           <a href="#">
-            <i class="fa fa-table"></i> <span>Tables</span>
+            <i class="fa fa-book"></i>
+            <span>Tickets</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
+           <ul class="treeview-menu">
+            <li><a href="<?php echo base_url(); ?>index.php/super_admin/tickets"><i class="fa fa-book"></i>view tickets</li>
           </ul>
-        </li> -->
-        <!-- <li class="treeview">
+        </li>
+        <li class="treeview">
           <a href="#">
-            <i class="fa fa-share"></i> <span>Multilevel</span>
+            <i class="fa fa-book"></i>
+            <span>Departments</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-circle-o"></i> Level One
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
-                <li class="treeview">
-                  <a href="#"><i class="fa fa-circle-o"></i> Level Two
-                    <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                  </a>
-                  <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+           <ul class="treeview-menu">
+            <li><a href="<?php echo base_url(); ?>index.php/super_admin/departments"><i class="fa fa-book"></i>view departments</li>
           </ul>
-        </li> -->
-        <!-- <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li> -->
+        </li>
+        
       </ul>
     </section>
     <!-- /.sidebar -->

@@ -75,6 +75,10 @@ class Super_admin extends CI_Controller{
         }
         print_r($msg);
     }
+    function departments(){
+        $data['departments'] = $this->_users->departments();
+        $this->load->view("super_admin/departments", $data);
+    }
     
     function session_checker(){
         if(empty($this->session->userid)) redirect('login/index');
