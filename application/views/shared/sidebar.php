@@ -24,50 +24,73 @@
       </form>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
+      <?php 
+      if(!empty($this->session->role)){
+        print '<ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview" id="dash-link">
-          <a href="<?php echo base_url(); ?>index.php/super_admin/index"><i class="fa fa-dashboard"></i> <span>Dashboard</span>            
+          <a href="'.base_url().'index.php/'.$this->session->role.'/index"><i class="fa fa-dashboard"></i> <span>Dashboard</span>            
           </a>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-users"></i>
-            <span>Users</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url(); ?>index.php/super_admin/users"><i class="fa fa-user-plus"></i>Add new user</li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-book"></i>
-            <span>Tickets</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url(); ?>index.php/super_admin/tickets"><i class="fa fa-book"></i>view tickets</li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-book"></i>
-            <span>Departments</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url(); ?>index.php/super_admin/departments"><i class="fa fa-book"></i>view departments</li>
-          </ul>
-        </li>
-        
-      </ul>
+        </li>';
+        switch($this->session->role){
+          case 'super_admin':
+            print '
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-users"></i>
+                <span>Users</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+               <ul class="treeview-menu">
+                <li><a href="'.base_url().'index.php/super_admin/users"><i class="fa fa-user-plus"></i>Add new user</li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-book"></i>
+                <span>Tickets</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+               <ul class="treeview-menu">
+                <li><a href="'.base_url().'index.php/super_admin/tickets"><i class="fa fa-book"></i>view tickets</li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-book"></i>
+                <span>Departments</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+               <ul class="treeview-menu">
+                <li><a href="'.base_url().'index.php/super_admin/departments"><i class="fa fa-book"></i>view departments</li>
+              </ul>
+            </li>';
+          break;
+          case 'admin':
+          print '
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-book"></i>
+              <span>Tickets</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+             <ul class="treeview-menu">
+              <li><a href="'.base_url().'index.php/admin/tickets"><i class="fa fa-file-text"></i>View tickets</li>
+            </ul>
+          </li>';
+          break;
+        }
+        print '</ul>';
+      }
+      ?>
     </section>
     <!-- /.sidebar -->
   </aside>

@@ -10,7 +10,15 @@ class Login extends CI_Controller{
         if(!empty($_POST)){
             $email = $this->input->post("email");
             $password = $this->input->post("password");
-            $sql = "SELECT u.id,u.full_names,r.role
+            $sql = "SELECT u.id,u.full_names,r.role,
+            (SELECT 
+                GROUP_CONCAT(DISTINCT p1.permission
+                    ORDER BY p1.id ASC
+                    SEPARATOR ',')
+                FROM permissions p1 
+                    INNER JOIN permissions_mapping pm ON pm.permission_id = p1.id 
+                WHERE pm.user_id = u.id
+            ) AS permissions
             FROM users u 
                 INNER JOIN roles r ON u.role = r.id
             WHERE u.email LIKE '".$email."' AND u.password LIKE '".$password."' ";
@@ -21,7 +29,8 @@ class Login extends CI_Controller{
                     $user_data = array(
                         'userid'=>$user->id,
                         'names'=>$user->full_names,
-                        'role'=>$user->role
+                        'role'=>$user->role,
+                        'permissions'=>$user->permissions
                     );
                     $this->session->set_userdata($user_data);
 
