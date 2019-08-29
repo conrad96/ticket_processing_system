@@ -87,4 +87,8 @@ class Super_admin extends CI_Controller{
     function session_checker(){
         if(empty($this->session->userid)) redirect('login/index');
     }
+    function logout(){
+        $this->session->sess_destroy();
+        redirect("login/index");
+    }
 }
