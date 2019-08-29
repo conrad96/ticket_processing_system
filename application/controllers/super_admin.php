@@ -20,6 +20,7 @@ class Super_admin extends CI_Controller{
             $password =$this->input->post("password");
             $cpassword =$this->input->post("cpassword");
             $role = $this->input->post("role");
+            $department = $this->input->post("department");
             //validate
             if(!empty($fullnames)
             && !empty($username)
@@ -27,6 +28,7 @@ class Super_admin extends CI_Controller{
             && !empty($password)
             && !empty($cpassword)
             && !empty($role)
+            && !empty($department)
             ){
                 if($password != $cpassword){
                     $msg = '<span class="alert alert-warning">Passwords dont match</span>';
@@ -41,6 +43,7 @@ class Super_admin extends CI_Controller{
                     $user['username'] = $username;
                     $user['password'] = $password;
                     $user['role'] = $role;
+                    $user['department_id'] = $department;
                     $result = $this->_users->add($user);
                     
                     if($result > 0){

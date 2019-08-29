@@ -6,6 +6,7 @@ class _users extends CI_Model{
                     u.username,
                     u.email,
                     r.role, 
+                    d.department,
                     (SELECT 
                         GROUP_CONCAT(DISTINCT p1.permission
                             ORDER BY p1.id ASC
@@ -16,6 +17,7 @@ class _users extends CI_Model{
                     ) AS permissions
                 FROM users u 
                 LEFT JOIN roles r ON r.id = u.role
+                LEFT JOIN departments d ON d.id = u.department_id
             WHERE u.id NOT IN (".$this->session->userid.")
             ")->result();
     }

@@ -48,6 +48,9 @@
                     <li class="list-group-item">
                       <b>Email</b> <a class="pull-right">'.$user->email.'</a>
                     </li>
+                    <li class="list-group-item">
+                      <b>Department:</b> <a class="pull-right">'.$user->department.'</a>
+                    </li>
                     <li class="list-group-item"><b>Permissions:</b>
                       <span class="text-muted text-center pull-right">
                       '.$user->permissions.'
@@ -118,7 +121,7 @@
                           </div>
                           <div class="form-group">      
                               <label for="dept">Department</label>                      
-                              <select id="dept" name="role" class="form-control col-md-4">
+                              <select id="dept" name="department" class="form-control col-md-4">
                               <?php 
                                 if(!empty($departments)){
                                   foreach($departments as $department){
