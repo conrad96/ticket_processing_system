@@ -8,6 +8,7 @@ class Super_admin extends CI_Controller{
         $data['users'] = $this->_users->users();
         $data['permissions'] = $this->db->get("permissions")->result();
         $data['roles'] = $this->db->get("roles")->result();
+        $data['departments'] = $this->_users->departments();
         $this->load->view("super_admin/users", $data);
     }
     function add_user(){

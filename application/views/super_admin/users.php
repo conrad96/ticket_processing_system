@@ -116,6 +116,18 @@
                               ?>
                               </select>
                           </div>
+                          <div class="form-group">      
+                              <label for="dept">Department</label>                      
+                              <select id="dept" name="role" class="form-control col-md-4">
+                              <?php 
+                                if(!empty($departments)){
+                                  foreach($departments as $department){
+                                    print '<option value="'.$department->ID.'">'.$department->department.'</option>';
+                                  }
+                                }
+                              ?>
+                              </select>
+                          </div>
                           <div class="form-group"> 
                              <label for="pass">Password</label>                         
                               <input type="password" class="form-control col-md-4" name="password" placeholder="Password" id="pass">
