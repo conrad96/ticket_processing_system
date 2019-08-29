@@ -298,7 +298,7 @@
                 <div class="col-md-4">
                 <div class="box box-primary">
                 <div class="box-body box-profile">
-                  <img class="profile-user-img img-responsive img-circle" src="'.base_url().'assets/dist/img/avatar.png" alt="User profile picture">
+                  <img class="profile-user-img img-responsive img-circle" src="'.base_url().'assets/dist/img/pic.png" alt="User profile picture">
     
                   <h3 class="profile-username text-center">'.$user->full_names.'</h3>
     
@@ -312,8 +312,13 @@
                       <b>Email</b> <a class="pull-right">'.$user->email.'</a>
                     </li>
                     <li class="list-group-item"><b>Permissions:</b>
-                      <span class="text-muted text-center">
+                      <span class="text-muted text-center pull-right">
                       '.$user->permissions.'
+                      </span>
+                    </li>
+                    <li class="list-group-item"><b>Role:</b>
+                      <span class="text-muted text-center pull-right">
+                      '.$user->role.'
                       </span>
                     </li>
                   </ul>

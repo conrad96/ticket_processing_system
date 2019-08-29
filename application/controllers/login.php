@@ -10,7 +10,10 @@ class Login extends CI_Controller{
         if(!empty($_POST)){
             $email = $this->input->post("email");
             $password = $this->input->post("password");
-            $sql = "SELECT * FROM users u WHERE u.email LIKE '".$email."' AND u.password LIKE '".$password."' ";
+            $sql = "SELECT u.id,u.full_names,r.role
+            FROM users u 
+                INNER JOIN roles r ON u.role = r.id
+            WHERE u.email LIKE '".$email."' AND u.password LIKE '".$password."' ";
             $query = $this->db->query($sql)->result();
             if(!empty($query)){
                 //set session
