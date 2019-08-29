@@ -58,9 +58,9 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Write ticket</h4>
-                <div class="pull-right"><span id="msg-detail"></span></div>
-              </div>
+                </div>
               <div class="modal-body">
+              <span id="msg-detail" style="width: 100%;"></span>
                 <p>
                     <form id="ticket-form">
                     <div class="box">

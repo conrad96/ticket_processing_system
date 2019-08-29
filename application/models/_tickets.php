@@ -8,4 +8,8 @@ class _tickets extends CI_Model{
         LEFT JOIN departments d ON d.id = u.department_id         
         ")->result();
     }
+    function add($data = array()){
+        $this->db->insert("tickets", $data);
+        return $this->db->insert_id();
+    }
 }
