@@ -5,6 +5,7 @@ class Admin extends CI_Controller{
     }
     function tickets(){
         $data['tickets'] = $this->_tickets->get_all_tickets();
+        $data['widgets_counters'] = $this->_tickets->count_tickets();
         $this->load->view("admin/tickets", $data);
     }
     function add_ticket(){

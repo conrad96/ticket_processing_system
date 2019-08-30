@@ -15,4 +15,10 @@ class _tickets extends CI_Model{
         $this->db->insert("tickets", $data);
         return $this->db->insert_id();
     }
+    function count_tickets(){
+        return $this->db->query("
+        SELECT count(*)
+            FROM tickets t 
+        ")->num_rows();
+    }
 }
