@@ -27,7 +27,8 @@
 
                   <div class="attachment-text">
                     <?php echo $ticket->description; ?>
-                  </div>                  
+                  </div>                   
+
                 </div>
               </div>
               <!--
@@ -37,7 +38,22 @@
               -->
             </div>
             <div class="box-footer box-comments">
-              <!-- commenter come here -->
+                <div class="box-comment">
+                    <!-- User image -->
+                    <img class="img-circle img-sm" src="<?php echo base_url(); ?>assets/dist/img/pic.png" alt="User Image">
+
+                        <div class="comment-text">
+                              <span class="username">
+                                Nora Havisham
+                                <span class="text-muted pull-right">8:03 PM Today</span>
+                              </span><!-- /.username -->
+                          The point of using Lorem Ipsum is that it has a more-or-less
+                          normal distribution of letters, as opposed to using
+                          'Content here, content here', making it look like readable English.
+                        </div>
+                      
+                </div> 
+                <span style="padding-bottom: 15px;"></span>  
             </div>
             <?php 
             if(!empty($this->session->permissions)){
@@ -47,12 +63,13 @@
                       if($permission == 'post_comment'){
                         print '
                         <div class="box-footer">
-                            <form id="post-comment-form">
-                              <img class="img-responsive img-circle img-sm" src="'.base_url().'assets/dist/img/pic.png" alt="Alt Text">                              
-                              <input type="hidden" name="ticket_id" value="'.$ticket->id.'" />
+                            <form id="post-comment-form">                              
+                              <img class="img-responsive img-circle img-sm" src="'.base_url().'assets/dist/img/pic.png" alt="'.$this->session->names.'">                                                            
                               <div class="img-push">
+                              <input type="hidden" name="ticket_id" value="'.$ticket->id.'" />
                                 <input type="text" id="comment-text" name="comment" class="form-control input-sm" placeholder="Press enter to post comment">
-                              </div>
+                                <span id="avatar-pic"></span>
+                                </div>
                             </form>
                         </div>    
                         ';

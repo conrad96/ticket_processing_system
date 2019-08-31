@@ -25,4 +25,8 @@ class _tickets extends CI_Model{
         WHERE ".$state."
         ")->num_rows();
     }
+    function post_comment($data = array()){
+        $this->db->insert("comments", $data);
+        return $this->db->insert_id();
+    }
 }

@@ -28,6 +28,14 @@ class Admin extends CI_Controller{
         }
         print_r($msg);
     }
+    function post_comment(){
+        if(!empty($_POST)){
+           $comment['ticket_id'] = $this->input->post("ticket_id");
+           $comment['comment'] = $this->input->post("comment");
+           $comment['user_id'] = $this->session->userid;
+           $post = $this->_tickets->post_comment($comment);
+        }
+    }
     function logout(){
         $this->session->sess_destroy();
         redirect("login/index");
