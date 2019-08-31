@@ -49,8 +49,9 @@
                         <div class="box-footer">
                             <form id="post-comment-form">
                               <img class="img-responsive img-circle img-sm" src="'.base_url().'assets/dist/img/pic.png" alt="Alt Text">                              
+                              <input type="hidden" name="ticket_id" value="'.$ticket->id.'" />
                               <div class="img-push">
-                                <input type="text" class="form-control input-sm" placeholder="Press enter to post comment">
+                                <input type="text" id="comment-text" name="comment" class="form-control input-sm" placeholder="Press enter to post comment">
                               </div>
                             </form>
                         </div>    

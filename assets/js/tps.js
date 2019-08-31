@@ -48,4 +48,12 @@ $(document).ready(function(){
             }
         });
     });
+
+    $("#comment-text").keypress(function(e){
+        $("#post-comment-form").submit(function(e){ e.preventDefault(); });
+        
+        if(e.which == 13){
+            console.log('posted');
+        }
+    });
 });

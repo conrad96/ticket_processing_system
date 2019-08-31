@@ -2,7 +2,8 @@
 class _tickets extends CI_Model{
     function get_all_tickets(){
         return $this->db->query("
-        SELECT t.ticket,
+        SELECT  t.id,
+                t.ticket,
                 t.description,
                 t.dateadded,
                 u.full_names as author,
