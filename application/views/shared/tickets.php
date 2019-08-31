@@ -39,15 +39,27 @@
             <div class="box-footer box-comments">
               <!-- commenter come here -->
             </div>
-            <div class="box-footer">
-              <form id="post-comment-form">
-                <img class="img-responsive img-circle img-sm" src="<?php echo base_url(); ?>assets/dist/img/pic.png" alt="Alt Text">
-                <!-- .img-push is used to add margin to elements next to floating images -->
-                <div class="img-push">
-                  <input type="text" class="form-control input-sm" placeholder="Press enter to post comment">
-                </div>
-              </form>
-            </div>            
+            <?php 
+            if(!empty($this->session->permissions)){
+              $permissions = explode(',', str_replace(' ', '_', strtolower($this->session->permissions)));
+              if(!empty($permissions)){
+                  foreach($permissions as $permission){
+                      if($permission == 'post_comment'){
+                        print '
+                        <div class="box-footer">
+                            <form id="post-comment-form">
+                              <img class="img-responsive img-circle img-sm" src="'.base_url().'assets/dist/img/pic.png" alt="Alt Text">                              
+                              <div class="img-push">
+                                <input type="text" class="form-control input-sm" placeholder="Press enter to post comment">
+                              </div>
+                            </form>
+                        </div>    
+                        ';
+                      }
+                    }
+                  }
+                }            
+            ?>        
 </div>
     <?php   
         } 
