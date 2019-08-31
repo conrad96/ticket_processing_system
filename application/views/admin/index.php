@@ -25,7 +25,7 @@
     <section class="content">
       <!-- Small boxes (Stat box) -->
       <div class="row">
-        <?php $this->load->view("shared/dashboard_widgets", $widgets_counters); ?>
+        <?php //$this->load->view("shared/dashboard_widgets", $widgets_counters); ?>
       </div>
     </section>
     <!-- /.content -->

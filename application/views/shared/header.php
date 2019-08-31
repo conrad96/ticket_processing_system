@@ -31,3 +31,4 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <input type="hidden" id="base-url" value="<?php echo base_url(); ?>" />
+<input type="hidden" id="role" value="<?php echo $this->session->role; ?>" />

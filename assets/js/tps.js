@@ -23,7 +23,7 @@ $(document).ready(function(){
     });
 
     $("#dash-link").click(function(e){
-        window.location.href = $("#base-url").val() + 'index.php/super_admin/index';
+        window.location.href = $("#base-url").val() + 'index.php/' + $("#role").val() + '/index';
     });
 
     $("#write-ticket").click(function(e){
