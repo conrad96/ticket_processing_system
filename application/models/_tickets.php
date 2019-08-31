@@ -15,10 +15,13 @@ class _tickets extends CI_Model{
         $this->db->insert("tickets", $data);
         return $this->db->insert_id();
     }
-    function count_tickets(){
+    function count_tickets($state = null){
+        $state = (empty($state))? $state = ' 1 = 1 ' : " t.status LIKE '".$state."' ";
+        #exit($state);
         return $this->db->query("
-        SELECT count(*)
+        SELECT *
             FROM tickets t 
+        WHERE ".$state."
         ")->num_rows();
     }
 }

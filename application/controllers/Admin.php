@@ -1,11 +1,12 @@
 <?php 
 class Admin extends CI_Controller{
     function index(){
-        $this->load->view("admin/index");
+        $data['tickets'] = $this->_tickets->get_all_tickets();
+        $this->load->view("admin/index", $data);
     }
     function tickets(){
         $data['tickets'] = $this->_tickets->get_all_tickets();
-        $data['widgets_counters'] = $this->_tickets->count_tickets();
+        $data['counter'] = $this->_tickets->count_tickets();
         $this->load->view("admin/tickets", $data);
     }
     function add_ticket(){
