@@ -73,4 +73,26 @@ $(document).ready(function(){
             });
         }
     });
+
+    $(".ticket-window-display").click(function(e){
+        var role = $("#role").val();
+        var ticket = $("#ticket-id").val();
+        var baseUrl = $("#base-url").val();
+        var user = $("#userid").val();     
+
+        if(role == 'user'){
+            var url =  baseUrl + 'index.php/' + role + '/view';  
+            var data = {ticket_id: ticket, user_id: user};
+            //console.log(data);
+            //add view entry to ticket
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: data,
+                success: function(data){
+                    console.log(data);
+                },    
+            });
+        }
+    });
 });

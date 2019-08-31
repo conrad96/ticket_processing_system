@@ -32,3 +32,4 @@
 </head>
 <input type="hidden" id="base-url" value="<?php echo base_url(); ?>" />
 <input type="hidden" id="role" value="<?php echo $this->session->role; ?>" />
+<input type="hidden" id="userid" value="<?php echo $this->session->userid; ?>" />

@@ -2,12 +2,14 @@
     if(!empty($tickets)){
         foreach($tickets as $ticket){
 ?>
-<div class="box box-widget">
+<div class="box box-widget ticket-window-display" >
+  <input type="hidden" id="ticket-id" value="<?php echo $ticket->id; ?>" />
             <div class="box-header with-border">
               <div class="user-block">
                 <img class="img-circle" src="<?php echo base_url(); ?>assets/dist/img/pic.png" alt="User Image">
-                <span class="username"><a href="#"><?php echo $this->session->names; ?></a></span>
+                <span class="username"><a href="#"><?php echo $ticket->author; ?></a></span>
                 <span class="description">Posted at <?php echo $ticket->dateadded; ?></span>
+                <span>Views: <i class="fa fa-eye"></i><?php echo $ticket->views; ?></span>
               </div>
               <div class="box-tools">                
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -51,7 +53,7 @@
 
                         <div class="comment-text">
                               <span class="username">
-                                '.$comment->author.'
+                                '.$comment->author.' <b style="color: blue;">['.$comment->role.']</b>
                                 <span class="text-muted pull-right">'.$comment->dateadded.'</span>
                               </span>
                          '.$comment->comment.'

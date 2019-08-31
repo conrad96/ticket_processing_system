@@ -7,10 +7,15 @@ class _tickets extends CI_Model{
                 t.description,
                 t.dateadded,
                 u.full_names as author,
-                d.department 
+                d.department ,
+                (
+                    SELECT COUNT(*) 
+                        FROM views v 
+                ) as views
             FROM tickets t 
         INNER JOIN users u ON u.id = t.user_id 
-            LEFT JOIN departments d ON d.id = u.department_id ")->result();
+            LEFT JOIN departments d ON d.id = u.department_id 
+            ")->result();
     }
     function add($data = array()){
         $this->db->insert("tickets", $data);
@@ -33,14 +38,19 @@ class _tickets extends CI_Model{
         return $this->db->query(
             "SELECT c.comment,
                     u.full_names as author,
-                    c.dateadded
+                    c.dateadded,
+                    r.role
                 FROM tickets t 
                 INNER JOIN comments c ON c.ticket_id = t.id 
                 INNER JOIN users u ON u.id = c.user_id 
+                INNER JOIN roles r ON r.id = u.role
             "
         )->result();
     }
     function count_comments(){
         return $this->db->get("comments")->num_rows();
-    }    
+    }   
+    function add_view($data = array()) {
+        return $this->db->insert("views", $data);
+    }
 }
