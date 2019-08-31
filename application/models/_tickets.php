@@ -40,4 +40,7 @@ class _tickets extends CI_Model{
             "
         )->result();
     }
+    function count_comments(){
+        return $this->db->get("comments")->num_rows();
+    }    
 }

@@ -50,7 +50,7 @@
         <!-- small box -->
         <div class="small-box bg-red">
         <div class="inner">
-            <h3><?php echo $this->_tickets->count_tickets('open'); ?></h3>
+            <h3><?php echo $this->_tickets->count_comments(); ?></h3>
             
             <p>Comments</p>
         </div>
