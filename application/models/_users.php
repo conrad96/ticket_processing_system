@@ -44,4 +44,8 @@ class _users extends CI_Model{
         $permission = $this->db->insert("permission_mapping", $data);
         return $this->db->insert_id();
     }
+    function get_users($role = null){
+        if(empty($role)) $role = ' 1 = 1 ';
+        return $this->db->query("SELECT * FROM users u WHERE $role ")->num_rows();
+    }
 }

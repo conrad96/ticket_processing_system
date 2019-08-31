@@ -2,7 +2,8 @@
 class Super_admin extends CI_Controller{
     function index(){
         //$this->session_checker();
-        $this->load->view("super_admin/index");
+        $data['tickets'] = $this->_tickets->get_all_tickets();
+        $this->load->view("super_admin/index", $data);
     }
     function users(){
         $data['users'] = $this->_users->users();

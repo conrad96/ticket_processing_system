@@ -24,7 +24,16 @@
     <!-- Main content -->
     <section class="content">
       <!-- Small boxes (Stat box) -->
+      <div class="row">   
+      
+
+        <?php $this->load->view("shared/widgets"); ?>
+      </div>
       <div class="row">
+        <!-- display tickets activity -->
+        <?php 
+          $this->load->view("shared/tickets", $tickets);
+        ?>
       </div>
     </section>
     <!-- /.content -->
