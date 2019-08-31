@@ -42,11 +42,11 @@
             if(!empty($comments)){
               ?>
               <div class="box-footer box-comments" id="comments-activity">
-                <div class="box-comment">
+               
                     <!-- User image -->
                     <?php                     
                     foreach($comments as $comment){
-                        print '
+                        print ' <div class="box-comment">
                         <img class="img-circle img-sm" src="'.base_url().'assets/dist/img/pic.png" alt="'.$comment->author.'">
 
                         <div class="comment-text">
@@ -56,8 +56,8 @@
                               </span>
                          '.$comment->comment.'
                         </div>                      
-                    </div> 
-                    <span style="padding-bottom: 15px;"></span>';
+                    </div> ';
+                    
                     }                      
                   ?>
             </div>
