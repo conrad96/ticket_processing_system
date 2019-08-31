@@ -51,10 +51,7 @@
                     <li class="list-group-item">
                       <b>Department:</b> <a class="pull-right">'.$user->department.'</a>
                     </li>
-                    <li class="list-group-item"><b>Permissions:</b>
-                      <span class="text-muted text-center pull-right">
-                      '.$user->permissions.'
-                      </span>
+                    <li class="list-group-item"><b>Permissions:</b> &nbsp;&nbsp;&nbsp;&nbsp;'.$user->permissions.'
                     </li>
                     <li class="list-group-item"><b>Role:</b>
                       <span class="text-muted text-center pull-right">
