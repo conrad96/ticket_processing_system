@@ -45,7 +45,7 @@ class _users extends CI_Model{
         return $this->db->insert_id();
     }
     function get_users($role = null){
-        if(empty($role)) $role = ' 1 = 1 ';
+        $role = (empty($role))? ' 1 = 1' : " u.role = '".$role."' ";
         return $this->db->query("SELECT * FROM users u WHERE $role ")->num_rows();
     }
 }

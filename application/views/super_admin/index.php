@@ -24,9 +24,9 @@
     <!-- Main content -->
     <section class="content">
       <!-- Small boxes (Stat box) -->
-      <div class="row">   
-      
-
+      <div class="row">         
+        <?php $this->load->view("super_admin/super_admin_widgets"); ?>
+        
         <?php $this->load->view("shared/widgets"); ?>
       </div>
       <div class="row">
