@@ -65,7 +65,7 @@ $(document).ready(function(){
                     $("#avatar-pic").html('<img src="'+ baseUrl +'assets/gifs/loading.gif" style="width: 50px;height: 50px;" />');
                 },
                 success: function (data){
-                    console.log(data);
+                   location.reload();
                 },
                 error: function(xhr, error, status){
 

@@ -36,6 +36,7 @@ class Admin extends CI_Controller{
            $post = $this->_tickets->post_comment($comment);
         }
     }
+
     function logout(){
         $this->session->sess_destroy();
         redirect("login/index");

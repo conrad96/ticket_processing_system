@@ -29,4 +29,15 @@ class _tickets extends CI_Model{
         $this->db->insert("comments", $data);
         return $this->db->insert_id();
     }
+    function get_comments($ticket_id = null){
+        return $this->db->query(
+            "SELECT c.comment,
+                    u.full_names as author,
+                    c.dateadded
+                FROM tickets t 
+                INNER JOIN comments c ON c.ticket_id = t.id 
+                INNER JOIN users u ON u.id = c.user_id 
+            "
+        )->result();
+    }
 }

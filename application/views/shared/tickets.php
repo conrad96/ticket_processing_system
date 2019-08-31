@@ -37,24 +37,34 @@
               <span class="pull-right text-muted">45 likes - 2 comments</span>
               -->
             </div>
-            <div class="box-footer box-comments">
+            <?php 
+            $comments = $this->_tickets->get_comments($ticket->id);
+            if(!empty($comments)){
+              ?>
+              <div class="box-footer box-comments" id="comments-activity">
                 <div class="box-comment">
                     <!-- User image -->
-                    <img class="img-circle img-sm" src="<?php echo base_url(); ?>assets/dist/img/pic.png" alt="User Image">
+                    <?php                     
+                    foreach($comments as $comment){
+                        print '
+                        <img class="img-circle img-sm" src="'.base_url().'assets/dist/img/pic.png" alt="'.$comment->author.'">
 
                         <div class="comment-text">
                               <span class="username">
-                                Nora Havisham
-                                <span class="text-muted pull-right">8:03 PM Today</span>
-                              </span><!-- /.username -->
-                          The point of using Lorem Ipsum is that it has a more-or-less
-                          normal distribution of letters, as opposed to using
-                          'Content here, content here', making it look like readable English.
-                        </div>
-                      
-                </div> 
-                <span style="padding-bottom: 15px;"></span>  
+                                '.$comment->author.'
+                                <span class="text-muted pull-right">'.$comment->dateadded.'</span>
+                              </span>
+                         '.$comment->comment.'
+                        </div>                      
+                    </div> 
+                    <span style="padding-bottom: 15px;"></span>';
+                    }                      
+                  ?>
             </div>
+
+              <?php 
+            }
+            ?>
             <?php 
             if(!empty($this->session->permissions)){
               $permissions = explode(',', str_replace(' ', '_', strtolower($this->session->permissions)));
