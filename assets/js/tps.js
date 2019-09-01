@@ -138,4 +138,29 @@ $(document).ready(function(){
         }
 
     });
+
+    $(".editBtn").click(function(e){
+        var baseUrl = $("#base-url").val();
+        var url =  baseUrl + 'index.php/admin/edit_ticket';             
+        var ticket = $(this).data("ticket_id");
+        var data = $("#edit-ticket-form-"+ ticket).serialize(); 
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            beforeSend: function(){
+                $("#loader").html('<span style="padding-right: 100px;"><img src="'+baseUrl+'assets/gifs/loading.gif" style="width: 150px;height: 85px;" /></span>');
+            },
+            error: function(xhr, error, status){},
+            success:function(data){
+                console.log(data);
+                $("#msg-detail").html(data);
+                console.log(data);
+                if(data === '<span class="alert alert-success">Ticket edited successfully</span>'){
+                    window.location.href = baseUrl + 'index.php/admin/tickets';
+                }               
+            }
+        });
+    });
 });

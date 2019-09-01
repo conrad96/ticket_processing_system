@@ -14,7 +14,8 @@
               <div class="modal-body">
               <span id="msg-detail" style="width: 100%;"></span>
                 <p>
-                    <form id="edit-ticket-form">
+                    <form id="edit-ticket-form-<?php echo $ticket->id; ?>">
+                    <input type="hidden" name="ticket_id" value="<?php echo $ticket->id; ?>" />
                     <div class="box">
             <div class="box-header">
               <h3 class="box-title">Ticket
@@ -41,8 +42,9 @@
             <hr />
             <div class="box-body pad">              
                 <textarea class="textarea" name="description_ticket_area" placeholder="Add description (optional)"
-                value="<?php echo $ticket->description; ?>"
-                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>              
+                     style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+                     <?php echo $ticket->description; ?>
+                     </textarea>              
             </div>
 
           </div>                         
@@ -52,7 +54,7 @@
               <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                 <span id="loader"></span>
-                <button type="button" id="write-ticket" class="btn btn-primary">Save changes</button>
+                <button type="button" id="edit-ticket-btn" data-ticket_id="<?php echo $ticket->id; ?>" class="btn btn-primary editBtn">Save changes</button>
               </div>
             </div>
             <!-- /.modal-content -->

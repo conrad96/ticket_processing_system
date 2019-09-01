@@ -22,6 +22,14 @@ class _tickets extends CI_Model{
         $this->db->insert("tickets", $data);
         return $this->db->insert_id();
     }
+    function edit($data = array()){
+
+        $id = $data['ticket_id'];
+        $this->db->where("id", $id);        
+        $this->db->update("tickets", $data);
+        #print_r($this->db->last_query());
+        return $this->db->affected_rows();
+    }
     function count_tickets($state = null){
         $state = (empty($state))? $state = ' 1 = 1 ' : " t.status LIKE '".$state."' ";
         #exit($state);

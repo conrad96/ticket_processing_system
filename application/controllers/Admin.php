@@ -42,8 +42,30 @@ class Admin extends CI_Controller{
             $change['status'] = $_POST['badge'];
             $this->db->where("id", $_POST['ticket']);
             $this->db->update("tickets", $change);
-            
+
             print_r($this->db->affected_rows());
+        }
+    }
+    function edit_ticket(){
+        if(!empty($_POST)){
+            if(!empty($this->input->post("ticket_area"))){
+                #exit(print_r($_POST));
+                $ticket['ticket'] = strip_tags($this->input->post("ticket_area"));
+                $ticket['description'] = strip_tags($this->input->post("description_ticket_area"));
+                
+                $this->db->where("id", $this->input->post("ticket_id"));        
+                $this->db->update("tickets", $ticket);
+                $add_ticket = $this->db->affected_rows();
+                //$ticket['user_id'] = $this->session->userid;                
+                //$add_ticket = $this->_tickets->edit($ticket);
+                if($add_ticket > 0){
+                    $msg = '<span class="alert alert-success">Ticket edited successfully</span>';
+                }else{
+                    $msg = '<span class="alert alert-danger">Oh snap!. an error occured on editing ticket</span>';
+                }
+            }else{
+                $msg = '<span class="alert alert-warning">Please fill in ticket</span>';
+            }
         }
     }
 
