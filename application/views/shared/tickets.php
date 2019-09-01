@@ -75,6 +75,7 @@
                 <?php 
             if(!empty($this->session->permissions)){
               $permissions = explode(',', str_replace(' ', '_', strtolower($this->session->permissions)));
+              
               if(!empty($permissions) && $this->session->role != 'user'){
 
                 print '<div class="col-md-4">
@@ -95,12 +96,13 @@
                         </form>
                         
                       </div>';
-                      //if($permission == 'edit_ticket' && $ticket->user_id == $this->session->userid){
-                        print '<div class="col-md-4">
-                          <a data-toggle="modal" data-static="static" data-target="#edit-ticket-'.$ticket->id.'"><i class="fa fa-pencil"></i>Edit ticket</a>
-                        </div>';
-                      //}
-
+                      foreach($permissions as $permission){
+                        if($permission == 'edit_ticket' && $ticket->user_id == $this->session->userid){
+                          print '<div class="col-md-4">
+                            <a data-toggle="modal" data-static="static" data-target="#edit-ticket-'.$ticket->id.'"><i class="fa fa-pencil"></i>Edit ticket</a>
+                          </div>';
+                        }
+                      }                    
                   }
                 }            
             ?>                   

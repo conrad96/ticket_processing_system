@@ -47,6 +47,7 @@ class Admin extends CI_Controller{
         }
     }
     function edit_ticket(){
+        $msg = null;
         if(!empty($_POST)){
             if(!empty($this->input->post("ticket_area"))){
                 #exit(print_r($_POST));
@@ -67,6 +68,7 @@ class Admin extends CI_Controller{
                 $msg = '<span class="alert alert-warning">Please fill in ticket</span>';
             }
         }
+        print_r($msg);
     }
 
     function logout(){
