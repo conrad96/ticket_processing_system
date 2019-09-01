@@ -36,6 +36,16 @@ class Admin extends CI_Controller{
            $post = $this->_tickets->post_comment($comment);
         }
     }
+    function change_status(){
+        if(!empty($_POST)){
+            #exit(print_r($_POST));
+            $change['status'] = $_POST['badge'];
+            $this->db->where("id", $_POST['ticket']);
+            $this->db->update("tickets", $change);
+            
+            print_r($this->db->affected_rows());
+        }
+    }
 
     function logout(){
         $this->session->sess_destroy();

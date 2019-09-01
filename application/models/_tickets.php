@@ -8,6 +8,7 @@ class _tickets extends CI_Model{
                 t.dateadded,
                 u.full_names as author,
                 d.department ,
+                t.user_id,
                 (
                     SELECT COUNT(*) 
                         FROM views v 
@@ -52,5 +53,23 @@ class _tickets extends CI_Model{
     }   
     function add_view($data = array()) {
         return $this->db->insert("views", $data);
+    }
+    function user_get_all_tickets(){
+        return $this->db->query("
+        SELECT  t.id,
+                t.ticket,
+                t.description,
+                t.dateadded,
+                u.full_names as author,
+                d.department ,
+                (
+                    SELECT COUNT(*) 
+                        FROM views v 
+                ) as views
+            FROM tickets t 
+        INNER JOIN users u ON u.id = t.user_id 
+            LEFT JOIN departments d ON d.id = u.department_id 
+        WHERE t.status LIKE 'open'
+            ")->result();
     }
 }

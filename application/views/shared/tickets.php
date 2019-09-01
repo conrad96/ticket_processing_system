@@ -2,15 +2,108 @@
     if(!empty($tickets)){
         foreach($tickets as $ticket){
 ?>
+<!-- ticket edit modal -->
+<div class="modal fade" id="edit-ticket-<?php echo $ticket->id; ?>">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Edit ticket</h4>
+                </div>
+              <div class="modal-body">
+              <span id="msg-detail" style="width: 100%;"></span>
+                <p>
+                    <form id="edit-ticket-form">
+                    <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Ticket
+                <small>edit ticket here... </small>
+              </h3>
+              <!-- tools box -->
+              <div class="pull-right box-tools">
+                <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
+                        title="Collapse">
+                  <i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-default btn-sm" data-widget="remove" data-toggle="tooltip"
+                        title="Remove">
+                  <i class="fa fa-times"></i></button>
+              </div>
+              <!-- /. tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body pad">              
+                <textarea class="textarea" id="ticket-area" name="ticket_area" placeholder="Type complaint here"              
+                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+                          <?php echo $ticket->ticket; ?>
+                          </textarea>              
+            </div>
+            <hr />
+            <div class="box-body pad">              
+                <textarea class="textarea" name="description_ticket_area" placeholder="Add description (optional)"
+                value="<?php echo $ticket->description; ?>"
+                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>              
+            </div>
+
+          </div>                         
+                    </form>
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <span id="loader"></span>
+                <button type="button" id="write-ticket" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+<!-- end ticket edit modal -->
 <div class="box box-widget ticket-window-display" >
   <input type="hidden" id="ticket-id" value="<?php echo $ticket->id; ?>" />
-            <div class="box-header with-border">
+            <div class="box-header with-border">              
               <div class="user-block">
                 <img class="img-circle" src="<?php echo base_url(); ?>assets/dist/img/pic.png" alt="User Image">
                 <span class="username"><a href="#"><?php echo $ticket->author; ?></a></span>
                 <span class="description">Posted at <?php echo $ticket->dateadded; ?></span>
                 <span>Views: <i class="fa fa-eye"></i><?php echo $ticket->views; ?></span>
+                <div id="msg-field" class="pull-right" style="height: 8px;"></div>
+                <!-- permission to close ticket -->
+                <?php 
+            if(!empty($this->session->permissions)){
+              $permissions = explode(',', str_replace(' ', '_', strtolower($this->session->permissions)));
+              if(!empty($permissions) && $this->session->role != 'user'){
+
+                print '<div class="col-md-4">
+                        <form>
+                          <div class="form-group">
+                          <select class="form-control" id="action-'.$ticket->id.'"><option disabled selected>-select-</option>';
+                  foreach($permissions as $permission){
+                    if($permission != 'delete_ticket'){
+                         $string = explode('_', $permission);
+                    print '<option value="'.$string[0].'">'.$permission.'</option>';
+                    }
+                  }
+                  print '</select>
+                  </div>
+                    <div class="form-group">
+                        <button id="update-status" data-ticket_id="'.$ticket->id.'" class="btn btn-sm update-status"><i class="fa fa-cog"></i>Update</button>
+                    </div>
+                        </form>
+                        
+                      </div>';
+                      //if($permission == 'edit_ticket' && $ticket->user_id == $this->session->userid){
+                        print '<div class="col-md-4">
+                          <a data-toggle="modal" data-static="static" data-target="#edit-ticket-'.$ticket->id.'"><i class="fa fa-pencil"></i>Edit ticket</a>
+                        </div>';
+                      //}
+
+                  }
+                }            
+            ?>                   
               </div>
+              
               <div class="box-tools">                
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>

@@ -1,7 +1,7 @@
 <?php
 class User extends CI_Controller{
     function index(){
-        $data['tickets'] = $this->_tickets->get_all_tickets();
+        $data['tickets'] = $this->_tickets->user_get_all_tickets();
         $this->load->view("user/index", $data);
     }
     function view(){
@@ -12,5 +12,9 @@ class User extends CI_Controller{
             $add_view = $this->_tickets->add_view($view);
             //print_r($view);
         }
+    }
+    function logout(){
+        $this->session->sess_destroy();
+        redirect("login/index");
     }
 }

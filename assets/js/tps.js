@@ -95,4 +95,47 @@ $(document).ready(function(){
             });
         }
     });
+    $(".ticket-action").on('change', function(e){
+        
+        var ticket = $(this).data("ticket_id");
+        var badge = $(this).val();
+        
+       
+        //add view entry to ticket
+        
+    });
+
+    $(".update-status").click(function(e){
+        e.preventDefault();
+        var baseUrl = $("#base-url").val();
+        var url =  baseUrl + 'index.php/' + $("#role").val() + '/change_status';  
+
+        var ticket = $(this).data("ticket_id");
+        var chosenAction = $("#action-"+ ticket).val();
+        var data = {badge: chosenAction, ticket: ticket};
+        
+        if(chosenAction != 'edit' 
+        && chosenAction != 'read' 
+        && chosenAction != 'write'
+        && chosenAction != 'post'
+        ){
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: data,
+                success: function(data){
+                    console.log(data);
+                    if(parseInt(data) < 1){
+                        $("#msg-field").html("<span class='alert alert-danger'>Error occured , ticket status not updated</span>")
+                    }else{
+                        $("#msg-field").html("<span class='alert alert-success'>Ticket status updated...</span>")
+                    }
+                },
+                error: function(xhr, error, status){
+                    $("#msg-status").html("<span class='alert alert-danger'>Error occured , ticket status not updated</span>")
+                }    
+            });
+        }
+
+    });
 });

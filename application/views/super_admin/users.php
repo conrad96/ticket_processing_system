@@ -79,7 +79,7 @@
           ?>
 
           <!-- modal-->
-          <div class="modal fade" id="addUser">
+        <div class="modal fade" id="addUser">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
