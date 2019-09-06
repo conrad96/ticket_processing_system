@@ -81,23 +81,19 @@
                 print '<div class="col-md-4">
                         <form>
                           <div class="form-group">
-                          <select class="form-control" id="action-'.$ticket->id.'"><option disabled selected>-select-</option>';
-                  foreach($permissions as $permission){
-                    if($permission != 'delete_ticket'){
-                         $string = explode('_', $permission);
-                    print '<option value="'.$string[0].'">'.$permission.'</option>';
-                    }
-                  }
-                  print '</select>
-                  </div>
-                    <div class="form-group">
-                        <button id="update-status" data-ticket_id="'.$ticket->id.'" class="btn btn-sm update-status"><i class="fa fa-cog"></i>Update</button>
-                    </div>
-                        </form>
-                        
-                      </div>';
+                            <select class="form-control" id="action-'.$ticket->id.'">
+                              <option disabled selected>-select-</option>'.
+                              '<option value="closed">Close ticket</option>'. 
+                              '<option value="open">Open ticket</option>'. 
+                            '</select>
+                          </div>
+                          <div class="form-group">
+                              <button id="update-status" data-ticket_id="'.$ticket->id.'" class="btn btn-sm update-status"><i class="fa fa-cog"></i>Update</button>
+                          </div>
+                        </form></div>';
+
                       foreach($permissions as $permission){
-                        if($permission == 'edit_ticket' && $ticket->user_id == $this->session->userid){
+                        if($permission == 'edit_ticket'){
                           print '<div class="col-md-4">
                             <a data-toggle="modal" data-static="static" data-target="#edit-ticket-'.$ticket->id.'"><i class="fa fa-pencil"></i>Edit ticket</a>
                           </div>';
