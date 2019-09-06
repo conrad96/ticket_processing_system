@@ -33,6 +33,13 @@ class Admin extends CI_Controller{
            $comment['ticket_id'] = $this->input->post("ticket_id");
            $comment['comment'] = $this->input->post("comment");
            $comment['user_id'] = $this->session->userid;
+           #add comment in table
+           $this->db->insert("ticket_status_mapping", array(
+            "user_id"=> $this->session->userid,
+            "status"=> 'comment',
+            "role"=> $this->session->role,
+            "ticket_id"=> $this->input->post("ticket_id")
+            ));
            $post = $this->_tickets->post_comment($comment);
         }
     }
@@ -42,6 +49,13 @@ class Admin extends CI_Controller{
             $change['status'] = $_POST['badge'];
             $this->db->where("id", $_POST['ticket']);
             $this->db->update("tickets", $change);
+            #add mapping log entry
+            $this->db->insert("ticket_status_mapping", array(
+                "user_id"=> $this->session->userid,
+                "status"=> $_POST['badge'],
+                "role"=> $this->session->role,
+                "ticket_id"=> $_POST['ticket']
+            ));
 
             print_r($this->db->affected_rows());
         }

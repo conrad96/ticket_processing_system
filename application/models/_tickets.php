@@ -80,4 +80,14 @@ class _tickets extends CI_Model{
         WHERE t.status LIKE 'open'
             ")->result();
     }
+    function log($ticket_id = ''){
+        return $this->db->query("
+        SELECT u.full_names as author,
+        t.ticket,
+        tsm.status
+        FROM ticket_status_mapping tsm
+        INNER ON users u ON u.id = tsm.user_id 
+        INNER JOIN tickets t ON t.id = tsm.ticket_id
+        ")->result();
+    }
 }

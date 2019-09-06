@@ -2,6 +2,62 @@
     if(!empty($tickets)){
         foreach($tickets as $ticket){
 ?>
+<!-- view log modal -->
+<div class="modal fade" id="view-log-<?php echo $ticket->id; ?>">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">View ticket activity</h4>
+                </div>
+              <div class="modal-body">              
+                <p>
+                <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#tab_1" data-toggle="tab">Comments</a></li>
+              <li><a href="#tab_2" data-toggle="tab">Viewers</a></li>                                          
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab_1">
+                <b>Comments activity:</b>
+                 <!-- user posted comment at "" -->
+                  <?php 
+                  $comments = $this->_tickets->get_comments($ticket->id);
+                  if(!empty($comments)){
+                    foreach($comments as $comment){
+                      print '<p />'.$comment->author.' ['.$comment->role.'] posted a comment at '.$comment->dateadded.'<br />';
+                    }
+                  }
+                  ?>
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_2">
+                The European languages are members of the same family. Their separate existence is a myth.
+                For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
+                in their grammar, their pronunciation and their most common words. Everyone realizes why a
+                new common language would be desirable: one could refuse to pay expensive translators. To
+                achieve this, it would be necessary to have uniform grammar, pronunciation and more common
+                words. If several languages coalesce, the grammar of the resulting language is more simple
+                and regular than that of the individual languages.
+              </div>
+              
+            </div>
+            <!-- /.tab-content -->
+          </div>
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <span id="loader"></span>
+                <button type="button" id="edit-ticket-btn" data-ticket_id="<?php echo $ticket->id; ?>" class="btn btn-primary editBtn">Save changes</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+<!-- end log modal -->
 <!-- ticket edit modal -->
 <div class="modal fade" id="edit-ticket-<?php echo $ticket->id; ?>">
           <div class="modal-dialog">
@@ -68,8 +124,7 @@
               <div class="user-block">
                 <img class="img-circle" src="<?php echo base_url(); ?>assets/dist/img/pic.png" alt="User Image">
                 <span class="username"><a href="#"><?php echo $ticket->author; ?></a></span>
-                <span class="description">Posted at <?php echo $ticket->dateadded; ?></span>
-                <span>Views: <i class="fa fa-eye"></i><?php echo $ticket->views; ?></span>
+                <span class="description">Posted at <?php echo $ticket->dateadded; ?></span>                
                 <div id="msg-field" class="pull-right" style="height: 8px;"></div>
                 <!-- permission to close ticket -->
                 <?php 
@@ -91,14 +146,25 @@
                               <button id="update-status" data-ticket_id="'.$ticket->id.'" class="btn btn-sm update-status"><i class="fa fa-cog"></i>Update</button>
                           </div>
                         </form></div>';
+                      print '<div class="rows">';
 
                       foreach($permissions as $permission){
                         if($permission == 'edit_ticket'){
-                          print '<div class="col-md-4">
+                          print '<div class="col-md-2">
                             <a data-toggle="modal" data-static="static" data-target="#edit-ticket-'.$ticket->id.'"><i class="fa fa-pencil"></i>Edit ticket</a>
                           </div>';
                         }
-                      }                    
+                        if($permission == 'view_log'){
+                          print '<div class="col-md-2">
+                            <a data-toggle="modal" data-static="static" data-target="#view-log-'.$ticket->id.'"><i class="fa fa-file-text-o"></i>View log</a>
+                          </div>';
+                        }
+                      }
+                      print '<div class="col-md-2">
+                      <span>Views: <i class="fa fa-eye"></i>'.$ticket->views.'</span>
+                      </div>';
+
+                      print '</div>';
                   }
                 }            
             ?>                   
