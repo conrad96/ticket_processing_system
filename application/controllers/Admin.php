@@ -84,7 +84,9 @@ class Admin extends CI_Controller{
         }
         print_r($msg);
     }
-
+    function export(){
+        $this->load->view("admin/reports");
+    }
     function logout(){
         $this->session->sess_destroy();
         redirect("login/index");

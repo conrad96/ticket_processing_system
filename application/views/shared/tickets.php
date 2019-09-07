@@ -171,7 +171,7 @@
                   }
                 }            
             ?>    
-                <div class="col-md-2">
+                <div class="col-md-2 pull-right">
                   <span class="alert alert-success"><?php echo $ticket->status; ?></span>
                 </div>               
               </div>

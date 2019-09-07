@@ -84,8 +84,24 @@
             </a>
              <ul class="treeview-menu">
               <li><a href="'.base_url().'index.php/admin/tickets"><i class="fa fa-file-text"></i>View tickets</li>
-            </ul>
+              <li><a href="'.base_url().'index.php/admin/export"><i class="fa fa-cloud-download"></i>Report</li>
+            </ul>            
           </li>';
+          break;
+          case 'user':
+            print '
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-book"></i>
+                <span>Tickets</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="'.base_url().'index.php/user/closed_tickets"><i class="fa fa-file-text"></i>Closed tickets</li>
+              </ul>
+            </li>';
           break;
         }
         print '</ul>';

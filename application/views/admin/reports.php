@@ -12,8 +12,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Dashboard
-        <small>Tickets</small>
+        Reports
+        <small>export</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -22,22 +22,9 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
-      <!-- Small boxes (Stat box) -->
-      <div class="row">        
-        <?php $this->load->view("user/user_widgets"); ?>
-      </div>
+    <section class="content">     
       <div class="row">
-        <!-- display tickets activity -->
-        <?php 
-        if(!empty($tickets)){
-          $this->load->view("shared/tickets", $tickets);
-        }else{
-          print '<div class="alert alert-danger">
-            on snap!. No open tickets available. please wait...
-          </div>';
-        }          
-        ?>
+                
       </div>
     </section>
     <!-- /.content -->

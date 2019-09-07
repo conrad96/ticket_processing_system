@@ -1,6 +1,7 @@
 <?php 
 class _tickets extends CI_Model{
-    function get_all_tickets(){
+    function get_all_tickets($status = null){
+        if(empty($status)) $status = 'open';
         return $this->db->query("
         SELECT  t.id,
                 t.ticket,
@@ -17,6 +18,7 @@ class _tickets extends CI_Model{
             FROM tickets t 
         INNER JOIN users u ON u.id = t.user_id 
             LEFT JOIN departments d ON d.id = u.department_id 
+        /* WHERE t.status LIKE '".$status."' */
             ")->result();
     }
     function add($data = array()){
@@ -63,7 +65,8 @@ class _tickets extends CI_Model{
     function add_view($data = array()) {
         return $this->db->insert("views", $data);
     }
-    function user_get_all_tickets(){
+    function user_get_all_tickets($status = null){
+        if(empty($status)) $status = 'open';
         return $this->db->query("
         SELECT  t.id,
                 t.ticket,
@@ -74,11 +77,12 @@ class _tickets extends CI_Model{
                 (
                     SELECT COUNT(*) 
                         FROM views v 
-                ) as views
+                ) as views,
+                t.status
             FROM tickets t 
         INNER JOIN users u ON u.id = t.user_id 
             LEFT JOIN departments d ON d.id = u.department_id 
-        WHERE t.status LIKE 'open'
+        WHERE t.status LIKE '".$status."'
             ")->result();
     }
     function log($ticket_id = ''){
