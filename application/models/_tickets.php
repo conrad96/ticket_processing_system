@@ -1,7 +1,8 @@
 <?php 
 class _tickets extends CI_Model{
     function get_all_tickets($status = null){
-        if(empty($status)) $status = 'open';
+        $query = null;
+        (empty($status))? $query = ' 1=1 ' : $query = " t.status LIKE '".$status."' ";
         return $this->db->query("
         SELECT  t.id,
                 t.ticket,
@@ -14,11 +15,17 @@ class _tickets extends CI_Model{
                     SELECT COUNT(*) 
                         FROM views v 
                 ) as views,
-                t.status
+                t.status,
+                (
+                    SELECT 
+                        GROUP_CONCAT(cm.comment SEPARATOR '| ') 
+                    FROM comments cm
+                    WHERE cm.ticket_id = t.id
+                ) as comments
             FROM tickets t 
         INNER JOIN users u ON u.id = t.user_id 
-            LEFT JOIN departments d ON d.id = u.department_id 
-        /* WHERE t.status LIKE '".$status."' */
+            LEFT JOIN departments d ON d.id = u.department_id         
+        WHERE  ".$query."
             ")->result();
     }
     function add($data = array()){

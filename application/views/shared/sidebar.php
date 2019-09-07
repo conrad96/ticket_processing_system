@@ -84,7 +84,7 @@
             </a>
              <ul class="treeview-menu">
               <li><a href="'.base_url().'index.php/admin/tickets"><i class="fa fa-file-text"></i>View tickets</li>
-              <li><a href="'.base_url().'index.php/admin/export"><i class="fa fa-cloud-download"></i>Report</li>
+              <li><a href="'.base_url().'index.php/admin/export"><i class="fa fa-cloud-download"></i>Reports</li>
             </ul>            
           </li>';
           break;
