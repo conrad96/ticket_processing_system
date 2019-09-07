@@ -12,7 +12,8 @@ class _tickets extends CI_Model{
                 (
                     SELECT COUNT(*) 
                         FROM views v 
-                ) as views
+                ) as views,
+                t.status
             FROM tickets t 
         INNER JOIN users u ON u.id = t.user_id 
             LEFT JOIN departments d ON d.id = u.department_id 

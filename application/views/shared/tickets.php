@@ -40,7 +40,7 @@
                       print '<p />'.$view->author.' : '.$view->dateadded.'<br />';
                     }
                   }else{
-                    print '<span class="alert alert-danger">No views yet.</span>';
+                    print '<p /><span class="alert alert-danger">No views yet.</span>';
                   }
                 ?>
               </div>
@@ -170,7 +170,10 @@
                       print '</div>';
                   }
                 }            
-            ?>                   
+            ?>    
+                <div class="col-md-2">
+                  <span class="alert alert-success"><?php echo $ticket->status; ?></span>
+                </div>               
               </div>
               
               <div class="box-tools">                
