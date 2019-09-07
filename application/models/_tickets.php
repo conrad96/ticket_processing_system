@@ -82,12 +82,28 @@ class _tickets extends CI_Model{
     }
     function log($ticket_id = ''){
         return $this->db->query("
-        SELECT u.full_names as author,
-        t.ticket,
-        tsm.status
+        SELECT 
+            u.full_names as author,
+            t.ticket,
+            tsm.status,
+            r.role,
+            tsm.dateadded
         FROM ticket_status_mapping tsm
-        INNER ON users u ON u.id = tsm.user_id 
-        INNER JOIN tickets t ON t.id = tsm.ticket_id
+            INNER JOIN users u ON u.id = tsm.user_id 
+            INNER JOIN tickets t ON t.id = tsm.ticket_id
+            LEFT JOIN roles r ON r.id = u.role
+        WHERE  tsm.ticket_id = ".$ticket_id."
+        ")->result();
+    }
+    function viewers($ticket_id = ''){
+        return $this->db->query("
+        SELECT 
+            u.full_names as author,            
+            v.dateadded 
+        FROM views v
+            INNER JOIN tickets t ON t.id = v.ticket_id
+            INNER JOIN users u ON u.id = t.user_id
+        WHERE v.ticket_id = ".$ticket_id."
         ")->result();
     }
 }
