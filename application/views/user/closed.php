@@ -26,7 +26,14 @@
       <div class="row">
         <!-- display tickets activity -->
         <?php 
+        if(!empty($tickets)){
           $this->load->view("shared/tickets", $tickets);
+        }else{
+          print '<div class="alert alert-warning">
+          No closed tickets yet...
+          </div>';
+        }
+          
         ?>
       </div>
     </section>
