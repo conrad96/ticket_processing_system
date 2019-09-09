@@ -171,7 +171,87 @@ class Admin extends CI_Controller{
 			$objWriter->save('php://output');
     }
     function download_pdf(){
-        
+        $this->load->library("Pdf");
+        //get tickets
+        $tickets = $this->_tickets->get_all_tickets();
+        $html = '';
+        if(!empty($tickets)){
+            $html .= '<table>';
+            foreach($tickets as $ticket){
+            $html .= '<tr>'. 
+                    '<th>Ticket number:</th>'. 
+                    '<th>TKCT-'.$ticket->id.'</th>'. 
+                     '</tr>';
+            $html .= '<tr><td>&nbsp;</td><td>&nbsp;</td></tr>';
+            $html .= '<tr>'. 
+                        '<th>Ticket</th>'. 
+                        '<th>'.$ticket->ticket.'</th>'. 
+                     '</tr>'; 
+            $html .= '<tr><td>&nbsp;</td><td>&nbsp;</td></tr>';
+            $html .= '<tr>'. 
+                        '<th>Description</th>'. 
+                        '<th>'.$ticket->description.'</th>'. 
+                     '</tr>';
+            $html .= '<tr><td>&nbsp;</td><td>&nbsp;</td></tr>';
+            $html .= '<tr>'. 
+                        '<th>Comments</th>'. 
+                        '<th>'.$ticket->comments.'</th>'. 
+                    '</tr>';
+            $html .= '<tr><td>&nbsp;</td><td>&nbsp;</td></tr>';
+            $html .= '<tr>'. 
+                        '<th>Author</th>'.
+                        '<th>'.$ticket->author.'</th>'. 
+                    '</tr>';
+            $html .= '<tr><td>&nbsp;</td><td>&nbsp;</td></tr>';
+            $html .= '<tr>'. 
+                        '<th>Status</th>'.
+                        '<th>'.$ticket->status.'</th>'. 
+                    '</tr>';
+            $html .= '<tr><td>&nbsp;</td><td>&nbsp;</td></tr>';
+            $html .= '<tr>'. 
+                    '<th>Dateadded</th>'.
+                    '<th>'.$ticket->dateadded.'</th>'. 
+                '</tr>';
+            }
+            $html .= '</table>';
+        }else{
+            $html .= 'No tickets have been logged on the system.';
+        }
+        $title = "tickets_".date("Yhmis")."_report";
+        // print_r($html);
+        // exit();
+        //$pdf = new PDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+		$pdf = new PDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+		// set document information
+		$pdf->SetCreator(PDF_CREATOR);
+		$pdf->SetAuthor("Conrad");
+		$pdf->SetTitle($title);
+		$pdf->SetSubject('Report');
+		$pdf->SetKeywords('Report, PDF, Export');
+		// set default header data
+		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' ', PDF_HEADER_STRING, array(0,64,255), array(0,64,128));
+		$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+		$pdf->setFooterData(array(0,64,0), array(0,64,128));
+		// set header and footer fonts
+		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+		$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+		// set default monospaced font
+		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+		// set margins
+		$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+		$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+		$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+		// set auto page breaks
+		$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+		// set image scale factor
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+		$pdf->setFontSubsetting(true);
+		$pdf->SetFont('dejavusans', '', 12, '', true);
+		$pdf->AddPage();
+		//$pdf->setTextSadow(array('enabled'=>true, 'depth_w'=>0.2, 'depth_h'=>0.2, 'color'=>array(196,196,196), 'opacity'=>1, 'blend_mode'=>'Normal'));
+		//$pdf->writeHTMLCell(0, 0, '', '', $layout, 0, 1, 0, true, '', true);
+		$pdf->writeHTML($html, true, false, false, false, '');
+		$pdf->Output('test.pdf', 'I');
     }
     function logout(){
         $this->session->sess_destroy();

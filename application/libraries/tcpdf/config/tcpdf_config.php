@@ -109,12 +109,12 @@ define ('PDF_AUTHOR', '');
 /**
  * Header title.
  */
-define ('PDF_HEADER_TITLE', 'KIRA MUNICIPAL COUNCIL');
+define ('PDF_HEADER_TITLE', 'Ticket processing system');
 
 /**
  * Header description string.
  */
-define ('PDF_HEADER_STRING', "(Invoice)" );
+define ('PDF_HEADER_STRING', "Report" );
 
 /**
  * Document unit of measure [pt=point, mm=millimeter, cm=centimeter, in=inch].
