@@ -27,10 +27,10 @@
     <!-- datatable open/closed -->       
     <div class="row">
         <div class="col-md-6">
-            <h2><a><i class="fa fa-file-excel-o"></i>Download excel</a></h2>
+            <h2><a href="<?php echo base_url(); ?>index.php/Admin/download_excel" target="_blank"><i class="fa fa-file-excel-o"></i>Download excel</a></h2>
         </div>
         <div class="col-md-6">
-            <h2><a><i class="fa fa-file-pdf-o"></i>Download pdf</a></h2>
+            <h2><a href="<?php echo base_url(); ?>index.php/Admin/download_pdf" target="_blank"><i class="fa fa-file-pdf-o"></i>Download pdf</a></h2>
         </div>
     </div>         
     <div class="row">
