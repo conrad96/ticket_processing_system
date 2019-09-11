@@ -92,83 +92,14 @@ class Admin extends CI_Controller{
         $this->load->library("PHPExcel");
 		
 		$objPHPExcel = new PHPExcel();
-		
-        $objPHPExcel->getProperties()->setCreator("Conrad")
-                                    ->setLastModifiedBy("Conrad")
-                                    ->setTitle("Property Invoice Export")
-                                    ->setSubject("Property Sheet")
-                                    ->setDescription("Export Property Details")
-                                    ->setKeywords("Excel Sheet")
-                                    ->setCategory("Conrad");
+        $objPHPExcel->getActiveSheet()
+                    ->setCellValue('A1', 'Tickets');
 
-			// Set active sheet index to the first sheet, so Excel opens this as the first sheet
-			$objPHPExcel->setActiveSheetIndex(0);
-			$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(30);
-			$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(30);
-			$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(25);
-			$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(25);
-			$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(15);
-			$objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(15);
-			// Add column headers
-			$objPHPExcel->getActiveSheet()
-						->setCellValue('A1', 'Property')
-						->setCellValue('A2', 'Owner')
-						->setCellValue('A3', 'Zone')
-						->setCellValue('A4', 'Description')
-						->setCellValue('A5', 'Val No.');
-			$objPHPExcel->getActiveSheet()->mergeCells("A7:B7");
-			$objPHPExcel->getActiveSheet()->mergeCells("D7:G7");
-			$objPHPExcel->getActiveSheet()->mergeCells("D14:E14");
-			$objPHPExcel->getActiveSheet()->setCellValue("A7","PROPERTY DETAILS");
-			$objPHPExcel->getActiveSheet()->setCellValue("D7","PROPERTY TAXES");
-			//property taxes fields
-			$objPHPExcel->getActiveSheet()->setCellValue("D8","Rent Amount")
-										  ->setCellValue("D9","Number of Units")
-									  ->setCellValue("D10","Annual Total Rent")
-										  ->setCellValue("D11","Taxable")
-										  ->setCellValue("D12","Tax")
-										  ->setCellValue("D14","Deposits")
-										  ->setCellValue("D15","Date")
-										  ->setCellValue("E15","Details")
-										  ->setCellValue("F15","Assessment")
-										  ->setCellValue("G15","Deposit(Ugx)")
-										  ->setCellValue("H15","Balance");										  
-			$bold_cell_style = array('fill' =>
-													array('type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' =>
-														array('rgb' => 'FFFF99'))
-									);
-			$taxes_cell_style = array('fill' =>
-													array('type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' =>
-														array('rgb' => '0080FF')),
-									  'borders' => array(
-								            'allborders' => array(
-								                'style' => PHPExcel_Style_Border::BORDER_THIN,
-								                'color' => array('rgb' => 'OOOOOO')
-								            ))
-									);
-			$objPHPExcel->getActiveSheet()->getStyle('A1:A5')->applyFromArray($bold_cell_style);
-			$objPHPExcel->getActiveSheet()->getStyle('A1:A5')->getFont()->setBold(true);
-			$objPHPExcel->getActiveSheet()->getStyle('D7:H20')->applyFromArray($taxes_cell_style);
-			$objPHPExcel->getActiveSheet()->getStyle('A7:B7')->applyFromArray($bold_cell_style);
-			$objPHPExcel->getActiveSheet()->getStyle("A7:B7")->getFont()->setBold(true);
-			$objPHPExcel->getActiveSheet()->getStyle("A7:B7")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-			$objPHPExcel->getActiveSheet()->getStyle("D7:G7")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-			$objPHPExcel->getActiveSheet()->getStyle("D14:E14")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-			
-				
-			$objPHPExcel->getActiveSheet()->getStyle('A8:A20')->applyFromArray(
-					array('fill' =>array('type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' =>
-														array('rgb' => '99FFFF'))
-									));
-									  			
-			// Set worksheet title
-			$objPHPExcel->getActiveSheet()->setTitle("Test");
-			// Redirect output to a client’s web browser (Excel5)
-			//header('Content-Type: application/vnd.ms-excel');
-			header('Content-Disposition: attachment;filename="test.xls"');
-			header('Cache-Control: max-age=0');
-			$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-			$objWriter->save('php://output');
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');            
+        header('Content-Disposition: attachment;filename="myfile.xlsx"');
+        header('Cache-Control: max-age=0');
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+        $objWriter->save('php://output'); 
     }
     function download_pdf(){
         $this->load->library("Pdf");
@@ -251,7 +182,7 @@ class Admin extends CI_Controller{
 		//$pdf->setTextSadow(array('enabled'=>true, 'depth_w'=>0.2, 'depth_h'=>0.2, 'color'=>array(196,196,196), 'opacity'=>1, 'blend_mode'=>'Normal'));
 		//$pdf->writeHTMLCell(0, 0, '', '', $layout, 0, 1, 0, true, '', true);
 		$pdf->writeHTML($html, true, false, false, false, '');
-		$pdf->Output('test.pdf', 'I');
+		$pdf->Output($title.'.pdf', 'I');
     }
     function logout(){
         $this->session->sess_destroy();
